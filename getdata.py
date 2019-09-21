@@ -27,13 +27,16 @@ headers = {
 #                        {'facebook_token': fb_auth_token, 'facebook_id': fb_user_id})
 #                    )
 #print(req.headers)
+
+req = requests.get("https://api.gotinder.com/user/recs", headers=headers).json()
 os.chdir("/Users/matthewbrun/Desktop/Tinder")
+print(req['results'][0]['photos'][0])
 while 0 < 1:
     ids = []
     req = requests.get("https://api.gotinder.com/user/recs", headers=headers).json()
     for profile in req['results']:
         ids.append(profile["_id"])
-        photo = requests.get(profile['photos'][0]['url'])
+        photo = requests.get(profile['photos'][0]['processedFiles'][0]['url'])
         img = Image.open(BytesIO(photo.content))
         img.save(str(profile["_id"])+".jpeg", "JPEG")
         for id in ids:
