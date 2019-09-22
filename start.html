@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="jumbotron">
+    <div class="container">
+      <h1><b>Pimp Me!!!!</b></h1>
+    </div>
+</div>
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+          <img class="img" src=https://raw.githubusercontent.com/jlfchen/HackRice9/master/Pictures/hot_or_not.jpg width="300" height="200">
+          <h2>Rate My Picture</h2>
+          <p>Put in any picture, and all individual faces in the picture will be identified and given a rating. The training set used is the SCUT-FBP5500 dataset of 5500 faces each with a handlabeled attractiveness rating out of 5.</p>
+          <p><a class="btn btn-default" href="/attractiveness" role="button">Go! &raquo;</a></p>
+          
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img class="img" src=https://raw.githubusercontent.com/jlfchen/HackRice9/master/Pictures/diverse.jpg width="300" height="200">
+          <h2>Who's Around Me? (you identify as a woman)</h2>
+          <p>This uses the K-means clustering algorithm after dimensionality reduction using Principal Component Analysis to create well-defined clusters of the people in your location with similar profiles if you identify as a woman. </p>
+          <p><a class="btn btn-default" href="/cluster1" role="button">Go! &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+          <img class="img" src=https://raw.githubusercontent.com/jlfchen/HackRice9/master/Pictures/diverse.jpg width="300" height="200">
+          <h2>Who's Similar to Me? (you identify as a man)</h2>
+          <p>This uses the K-means clustering algorithm after dimensionality reduction using Principal Component Analysis to create well-defined clusters of the people in your location with similar profiles if you identify as a man. </p>
+          <p><a class="btn btn-default" href="/cluster2" role="button">Go! &raquo;</a></p>
+
+        </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+</div>
+{% endblock %}
