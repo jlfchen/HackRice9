@@ -2,15 +2,14 @@ from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 import os
 import numpy as np
+import random
 from matplotlib.image import imread
 import pickle
-import random
-
 
 def classify_photo(photo, gender):
-    savedir = "/Users/matthewbrun/Fall 2019/HackRice9"
-    pcafile = ["pca64modelfemale.p", "pca64modelmale.p"]
-    kmeansfile = ["kmeanswomen.p", "kmeansmen.p"]
+    savedir = "C:/Users/yalex/Pictures"
+    pcafile = ["C:/Users/yalex/FlaskApp/PCAfiles/pca64modelfemale.p", "C:/Users/yalex/FlaskApp/PCAfiles/pca64modelmale.p"]
+    kmeansfile = ["C:/Users/yalex/FlaskApp/PCAfiles/kmeanswomen.p", "C:/Users/yalex/FlaskApp/PCAfiles/kmeansmen.p"]
     os.chdir(savedir)
     pca = pickle.load(open(pcafile[gender],"rb"))
     kmeans = pickle.load(open(kmeansfile[gender],"rb"))
@@ -21,8 +20,8 @@ def classify_photo(photo, gender):
     return group
 
 def similar_photos(group, gender):
-    filedir = ["/Users/matthewbrun/Desktop/Tinder/Women", "/Users/matthewbrun/Desktop/Tinder/Men"]
-    fileclass = ["/Users/matthewbrun/Fall 2019/HackRice9/femaleclasslist.p", "/Users/matthewbrun/Fall 2019/HackRice9/maleclasslist.p"]
+    filedir = ["C:/Users/yalex/FlaskApp/TinderPhotos/Women/", "C:/Users/yalex/FlaskApp/TinderPhotos/Men/"]
+    fileclass = ["C:/Users/yalex/FlaskApp/PCAfiles/femaleclasslist.p", "C:/Users/yalex/FlaskApp/PCAfiles/maleclasslist.p"]
     fileclasses = pickle.load(open(fileclass[gender],"rb"))
     photos = fileclasses[group]
     fileindex = random.sample(range(len(photos)),8)
@@ -30,6 +29,3 @@ def similar_photos(group, gender):
     for i in fileindex:
         files.append(filedir[gender]+photos[i])
     return files
-
-
-print(similar_photos(12,1))
