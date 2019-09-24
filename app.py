@@ -10,8 +10,8 @@ import usemodel
 from PIL import Image
 import os, os.path
 import matplotlib.pyplot as plt
-#import keras
-
+import keras
+import neuralnet
 
 app = Flask(__name__)
 
@@ -55,11 +55,20 @@ def attractiveness():
         ext = os.path.splitext(f)[1]
         if ext.lower() not in valid_images:
             continue
-        imgs.append(Image.open(os.path.join(path,f)))
-    
-    print (imgs)
+        imgs.append(os.path.join(path,f))
+    path = imgs[0]
+    print (path)
 
-    return render_template('attractiveness.html',login = logged_in)
+    imagefull = Image.open(open(path,"rb"))
+    image = imagefull.resize([350,350])
+    img = np.array(image)
+    print (img.shape)
+    rating = neuralnet.generate_prediction(img)
+ 
+    img = imread(path)
+    Image.fromarray(img).show()
+
+    return render_template('attractiveness_result.html', rating = rating) #need actual location path 
 
 @app.route('/cluster1')
 def cluster1(): #you are a woman
